@@ -1,28 +1,25 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-const service = require('../services/tableau');
+const services = require('../services/tableau');
 
-const private = require('../middlewares/private');
+// Tableau de bord
+router.get('/tableau-de-bord', services.tableau);
 
-router.get('/', private.checkJWT, service.tableau);
+// Utilisateur
+router.post('/updateUser', services.updateUser);
+router.post('/updateUser/:id', services.updateUserById);
+router.get('/deleteUser/:id', services.deleteUser);
 
-router.post('/updateUser', private.checkJWT, service.updateUser);
+// Catway
+router.get('/updateCatway/:id', services.updateCatway);
+router.post('/updateCatway/:id', services.updateCatwayById);
+router.get('/deleteCatway/:id', services.deleteCatway);
 
-router.post('/updateUser/:id', private.checkJWT, service.updateUserById);
-
-router.get('/deleteUser/', private.checkJWT, service.deleteUser);
-
-router.get('/updateCatway/:id', private.checkJWT, service.updateCatway);
-
-router.post('/updateCatway/:id', private.checkJWT, service.updateCatwayById);
-
-router.get('/deleteCatway/:id', private.checkJWT, service.deleteCatway);
-
-router.post('/addResevation', private.checkJWT, service.addReservation);
-
-router.get('/getResevationInfo/:id', private.checkJWT, service.getReservationInfo);
-
-router.get('/deleteReservation/:id', private.checkJWT, service.deleteReservation);
+// Réservations
+router.post('/addReservation', services.addReservation);
+router.get('/getReservationInfo/:id', services.getReservationInfo);
+router.get('/deleteReservation/:id', services.deleteReservation);
 
 module.exports = router;
+

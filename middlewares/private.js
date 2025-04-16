@@ -4,7 +4,7 @@ const SECRET_KEY = process.env.SECRET_KEY;
 exports.checkJWT = async (req, res, next) => {
     let token = req.headers['x-access-token'] || req.headers['authorization']
     if (!!token && token.startsWith('Bearer ')) {
-        token = token.slice(7, token.lenght);
+        token = token.slice(7, token.length);
     }
 
     if (token) {

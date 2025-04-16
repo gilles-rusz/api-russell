@@ -1,17 +1,25 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 
-const userRoute = require('../routes/user');
-const catwayRoute = require('../routes/catways');
-const reservationRoute = require('../routes/reservation');
-const tableauRoute = require('../routes/tableau');
+router.get('/', (req, res) => {
+    res.render('index', { title: 'Accueil - Port de Russell' });
+  });
 
+  router.get('/docs', (req, res) => {
+    res.render('docs');
+  });
+  
 
-router.use('/user', userRoute);
+const userRoute = require('./users'); 
+const catwayRoute = require('./catways');
+const reservationRoute = require('./reservation');
+const tableauRoutes = require('./tableau');
 
-
+router.use('/users', userRoute); 
 router.use('/catways', catwayRoute);
-router.use('/catways', reservationRoute);
-router.use('/tableau-de-bord', tableauRoute);
+router.use('/reservations', reservationRoute); 
+router.use('/', tableauRoutes);
 
 module.exports = router;
+

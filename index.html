@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Port de Russell</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+  <h1>Gestion de port de plaisance Russell</h1>
+
+  <p>Bienvenue sur l'API de port de plaisance Russell</p>
+  <p>Vous pouvez gérer les passerelle et les réservations du port</p>
+  <p>Pour cela il vous faudra vous connecter pour y avoir accés</p>
+
+  <p>Application de gestion des catways, utilisateurs et réservations.</p>
+
+  <h2>Connexion</h2>
+  <form id="login-form">
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Mot de passe" required />
+    <button type="submit">Se connecter</button>
+  </form>
+
+  <p id="error-message" style="color:red;"></p>
+
+  <script src="js/auth.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title><%= catway ? 'Modifier un catway' : 'Nouveau catway' %> - Port de Russell</title>
+</head>
+<body>
+  <h1><%= catway ? 'Modifier un catway' : 'Créer un nouveau catway' %></h1>
+
+  <form action="<%= catway ? '/catways/' + catway._id + '?_method=PUT' : '/catways' %>" method="POST">
+    <label for="name">Nom :</label>
+    <input type="text" id="name" name="name" value="<%= catway ? catway.name : '' %>" required><br>
+
+    <label for="location">Emplacement :</label>
+    <input type="text" id="location" name="location" value="<%= catway ? catway.location : '' %>" required><br>
+
+    <button type="submit"><%= catway ? 'Mettre à jour' : 'Créer' %></button>
+  </form>
+
+  <p><a href="/catways">Retour à la liste des catways</a></p>
+</body>
+</html>

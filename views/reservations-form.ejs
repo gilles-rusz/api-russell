@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title><%= reservation ? 'Modifier une réservation' : 'Nouvelle réservation' %> - Port de Russell</title>
+</head>
+<body>
+  <h1><%= reservation ? 'Modifier une réservation' : 'Créer une nouvelle réservation' %></h1>
+
+  <form action="<%= reservation ? '/reservations/' + reservation._id + '?_method=PUT' : '/reservations' %>" method="POST">
+    
+    <label for="userId">Utilisateur :</label>
+    <select id="userId" name="userId" required>
+      <option value="">-- Sélectionner un utilisateur --</option>
+      <% users.forEach(user => { %>
+        <option value="<%= user._id %>" <%= reservation && reservation.userId.equals(user._id) ? 'selected' : '' %>><%= user.email %></option>
+      <% }) %>
+    </select><br>
+
+    <label for="catwayId">Catway :</label>
+    <select id="catwayId" name="catwayId" required>
+      <option value="">-- Sélectionner un catway --</option>
+      <% catways.forEach(catway => { %>
+        <option value="<%= catway._id %>" <%= reservation && reservation.catwayId.equals(catway._id) ? 'selected' : '' %>><%= catway.name %> - <%= catway.location %></option>
+      <% }) %>
+    </select><br>
+
+    <label for="startDate">Date de début :</label>
+    <input type="date" id="startDate" name="startDate" value="<%= reservation ? reservation.startDate.toISOString().slice(0,10) : '' %>" required><br>
+
+    <label for="endDate">Date de fin :</label>
+    <input type="date" id="endDate" name="endDate" value="<%= reservation ? reservation.endDate.toISOString().slice(0,10) : '' %>" required><br>
+
+    <button type="submit"><%= reservation ? 'Mettre à jour' : 'Créer' %></button>
+  </form>
+
+  <p><a href="/reservations">Retour à la liste des réservations</a></p>
+</body>
+</html>

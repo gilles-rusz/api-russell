@@ -1,6 +1,8 @@
 const { ServerApiVersion } = require('mongodb');
 const mongoose = require('mongoose')
 
+
+
 const clientOption = {
     serverApi: {
       version: ServerApiVersion.v1,
@@ -12,8 +14,8 @@ const clientOption = {
 exports.initClientDbConnection = async () => {
     try { await mongoose.connect(process.env.URL_MONGO, clientOption)
         console.log("connected")
-      } catch (error) {
-        console.log(error);
+      } catch (e) {
+        console.log(e);
         throw e
     }
 };

@@ -1,4 +1,18 @@
+
 const Catway = require('../models/catway');
+const { validationResult } = require('express-validator');
+
+
+
+exports.getAll = async (req, res) => {
+    try {
+        const catways = await Catway.find();
+        return res.status(200).json(catways);
+    } catch (error) {
+        return res.status(500).json({ message: "Erreur lors de la récupération des catways", error });
+    }
+};
+
 
 exports.getById = async (req, res, next) => {
     const id = req.params.id 
@@ -79,7 +93,10 @@ exports.delete = async (req, res, next) => {
         await Catway.deleteOne({ _id: id });
 
         return res.status(204).json('delete_ok');
-    } catch (error) {
-        return res.status(501).json(error)
+    } catch (error) {return res.status(501).json(error)
     }
+}
+
+exports.getByIdRaw = async (id) => {
+    return await Catway.findById(id);
 };
